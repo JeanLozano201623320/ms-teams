@@ -2,6 +2,7 @@ package JDrones;
 import javax.swing.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.Semaphore;
 public class Dron extends Thread{
     private int x;
     private int y;
@@ -30,15 +31,14 @@ public class Dron extends Thread{
     
    
     private Lock mutex;
+    private Semaphore semaf;
     private int numd=0;
     Dron(int x, int y, DibujaDrones panel /*, double[] datosX,double[] datosY*/){
-        
-       // this.datosX=datosX;
-        //this.datosY=datosY;
         this.panel=panel;
         mutex = new ReentrantLock();
+        semaf= new Semaphore(1);
     }
-    public  void run(){
+    public synchronized  void run(){
         int iter=0;
         while(true){
             try{
@@ -135,6 +135,54 @@ public class Dron extends Thread{
                          mutex.unlock();
                     }
                 }
+  //semaforo---------------------------------------------------------  
+             else if (JDrones.semaf==true){
+                 semaf.acquire();//<----------------semaforo
+                        if (this.getName()=="1"){
+                            coord.y1+=b1;// = y+b;
+                            coord.x1+=a1;//;=x+a;
+                        }
+                        else if (this.getName()=="2"){
+                            coord.y2+=b2;// = y+b;
+                            coord.x2+=a2;//;=x+a;
+                           // System.out.println("x2= "+coord.y2);
+                        }
+                        else if (this.getName()=="3"){
+                           coord.y3+=b3;// = y+b;
+                           coord.x3+=a3;//;=x+a;
+                        }
+                        else if (this.getName()=="4"){
+                           coord.y4+=b4;// = y+b;
+                           coord.x4+=a4;//;=x+a;
+                        }
+                        else if (this.getName()=="5"){
+                           coord.y5+=b5;// = y+b;
+                           coord.x5+=a5;//;=x+a;
+                        }
+                        else if (this.getName()=="6"){
+                           coord.y6+=b6;// = y+b;
+                           coord.x6+=a6;//;=x+a;
+                        }
+                        else if (this.getName()=="7"){
+                           coord.y7+=b7;// = y+b;
+                           coord.x7+=a7;//;=x+a;
+                        }
+                        else if (this.getName()=="8"){
+                           coord.y8+=b8;// = y+b;
+                           coord.x8+=a8;//;=x+a;
+                        }
+                        else if (this.getName()=="9"){
+                           coord.y9+=b9;// = y+b;
+                           coord.x9+=a9;//;=x+a;
+                        }
+                        else if (this.getName()=="10"){
+                           coord.y10+=b10;// = y+b;
+                           coord.x10+=a10;//;=x+a;
+                        }
+                 
+                 semaf.release();//<----------------semaforo
+                 
+             }
                 //--------------------b1----------------------
                if (this.getName()=="1"){
                    if(JDrones.nu==1){
@@ -387,7 +435,7 @@ public class Dron extends Thread{
                          b6=-b6;
                      if (coord.x6==1325)
                          a6=-a6;
-                     if (coord.x5==657)
+                     if (coord.x6==657)
                          a6=-a6;
                }if(JDrones.nu==9||JDrones.nu==10){   
                     if (coord.y6==343)
@@ -487,8 +535,8 @@ public class Dron extends Thread{
                  panel.repaint();
                }   
                 
-                 
-               Thread.sleep(6);
+                Thread.sleep((int)(Math.random()*10));//<-------------sleep random
+              // Thread.sleep(6);
             }catch(Exception e){e.printStackTrace();}
             iter++;
         }

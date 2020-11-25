@@ -19,6 +19,7 @@ public class JDrones extends javax.swing.JFrame {
     public static int contador=0;//-----------contadior de lineas
     public static boolean mutecs =false;
     public static boolean sin =false;
+     public static boolean semaf =false;
     
     
     public JDrones() {
@@ -115,6 +116,11 @@ public class JDrones extends javax.swing.JFrame {
 
         algor.add(sema);
         sema.setText("Semáforo");
+        sema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                semaActionPerformed(evt);
+            }
+        });
         jMenu5.add(sema);
 
         algor.add(cond);
@@ -150,9 +156,18 @@ public class JDrones extends javax.swing.JFrame {
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         if(mute.isSelected()){ 
            mutecs =true;  
+           sin =false;
+           semaf=false;
         } 
         if(sinal.isSelected()){ 
-           sin =true;  
+           sin =true; 
+           mutecs =false;
+        }
+        if(sema.isSelected()){
+            semaf=true;
+            mutecs =false;
+           sin =false;
+            
         }
         if(contador<7&&nu<11){ 
            reincarneito();
@@ -232,6 +247,10 @@ public class JDrones extends javax.swing.JFrame {
     private void sinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sinalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sinalActionPerformed
+
+    private void semaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_semaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_semaActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

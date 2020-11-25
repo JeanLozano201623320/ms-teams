@@ -97,6 +97,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sem&#xe1;foro"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="semaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="cond">
               <Properties>
