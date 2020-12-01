@@ -42,51 +42,10 @@ public class coord {
     //dron 10
     public static  int x10;
     public static int y10;
-    //coordenadas
-    //b1 fases 6
-    /*
-     public static  int f1_b1=584;
-     public static  int f2_b1=284;
-     public static  int f4_b1=184;
-     public static  int f5_b1=134;
-     public static  int f6_b1=104;
-    //b2 fases 5
-     public static  int f1_b2=;
-     public static  int f2_b2=;
-     public static  int f3_b2=;
-     public static  int f4_b2=;
-     public static  int f5_b2=;
-    //b3 fases 4
-     public static  int f1_b3=;
-     public static  int f2_b3=;
-     public static  int f3_b3=;
-     public static  int f4_b3=;
+    //arreglo para graficar coordenadas
     
-    //b4 fases 4
-     public static  int f1_b4=;
-     public static  int f2_b4=;
-     public static  int f3_b4 =;
-     public static  int f4_b4=;
-    //b5 fases 3
-     public static  int f1_b5=;
-     public static  int f2_b5=;
-     public static  int f3_b5=;
-    //b6 fases 3
-     public static  int f1_b6=;
-     public static  int f2_b6=;
-     public static  int f3_b6=;
+   
     
-    //b7 fases 2
-     public static  int f1_b7=;
-     public static  int f2_b7=;
-    //b8 fases 2
-     public static  int f1_b8=;
-     public static  int f2_b8=;
-    //b9 fases 1
-     public static  int f1_b9=;
-    //b10 fases 1
-     public static  int f1_b9=;
-    */
     coord(int x1,int x2,int y1,int y2){
        
     }

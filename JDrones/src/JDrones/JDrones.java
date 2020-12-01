@@ -1,6 +1,6 @@
 package JDrones;
 
-//mport javax.swing.JFrame;
+import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
@@ -8,11 +8,12 @@ import javax.imageio.*;
 import java.util.ArrayList;
 public class JDrones extends javax.swing.JFrame {
     private DibujaDrones panel;
+   private gPerformed panelG;
     private int x;
     private int y;
     private int x1=0;
     private int y1=0;
-    private NumDron n;
+    private NumDron n; 
     private BufferedImage ima;
     private ArrayList<Dron> drones;
     public static int nu=0;
@@ -20,19 +21,69 @@ public class JDrones extends javax.swing.JFrame {
     public static boolean mutecs =false;
     public static boolean sin =false;
      public static boolean semaf =false;
+     public static boolean monif =false;
+     public static boolean vcf =false;
+     public static boolean barf =false;
+     public static double[] datosX1;
+    public static  double[] datosY1;
+    public static double[] datosX2;
+    public static  double[] datosY2;
+    public static double[] datosX3;
+    public static  double[] datosY3;
+    public static double[] datosX4;
+    public static  double[] datosY4;
+    public static double[] datosX5;
+    public static  double[] datosY5;
+      public static double[] datosX6;
+    public static  double[] datosY6;
+    public static double[] datosX7;
+    public static  double[] datosY7;
+    public static double[] datosX8;
+    public static  double[] datosY8;
+    public static double[] datosX9;
+    public static  double[] datosY9;
+    public static double[] datosX10;
+    public static  double[] datosY10;
+  
+    public static String str = "";
     
     
     public JDrones() {
         //iniciar con pantalla completa
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+       // this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         try{                                        // PASARLO a MENU
             ima = ImageIO.read(new File("mapaCU.png"));
         }catch(IOException e){e.printStackTrace();}
+        datosX1 = new double[100000];
+        datosY1 = new double[100000];
+        datosX2 = new double[100000];
+        datosY2 = new double[100000];
+        datosX3 = new double[100000];
+        datosY3 = new double[100000];
+        datosX4 = new double[100000];
+        datosY4 = new double[100000];
+        datosX5 = new double[100000];
+        datosY5 = new double[100000];
+        datosX6 = new double[100000];
+        datosY6 = new double[100000];
+        datosX7 = new double[100000];
+        datosY7 = new double[100000];
+        datosX8 = new double[100000];
+        datosY8 = new double[100000];
+        datosX9 = new double[100000];
+        datosY9 = new double[100000];
+        datosX10 = new double[100000];
+        datosY10 = new double[100000];
+        
+        
         drones =new ArrayList<Dron>();
         panel= new DibujaDrones(ima);
         panel.setBounds(0, 0, 1344, 599);
         add(panel);
+        //panelG= new gPerformed();
+        //panelG.setBounds(1345,0,570,600);
+       //add(panelG);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,8 +102,12 @@ public class JDrones extends javax.swing.JFrame {
         sinal = new javax.swing.JRadioButtonMenuItem();
         mute = new javax.swing.JRadioButtonMenuItem();
         sema = new javax.swing.JRadioButtonMenuItem();
-        cond = new javax.swing.JRadioButtonMenuItem();
+        vc = new javax.swing.JRadioButtonMenuItem();
         moni = new javax.swing.JRadioButtonMenuItem();
+        bar = new javax.swing.JRadioButtonMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        graficar = new javax.swing.JMenuItem();
+        borrar = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -123,15 +178,44 @@ public class JDrones extends javax.swing.JFrame {
         });
         jMenu5.add(sema);
 
-        algor.add(cond);
-        cond.setText("Variable de Condición");
-        jMenu5.add(cond);
+        algor.add(vc);
+        vc.setText("Variable de Condición");
+        jMenu5.add(vc);
 
         algor.add(moni);
         moni.setText("Monitores");
         jMenu5.add(moni);
 
+        algor.add(bar);
+        bar.setText("Barreras");
+        bar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                barActionPerformed(evt);
+            }
+        });
+        jMenu5.add(bar);
+
         jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("JFree chart");
+
+        graficar.setText("Graficar");
+        graficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graficarActionPerformed(evt);
+            }
+        });
+        jMenu6.add(graficar);
+
+        borrar.setText("Borrar");
+        borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarActionPerformed(evt);
+            }
+        });
+        jMenu6.add(borrar);
+
+        jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
 
@@ -139,7 +223,7 @@ public class JDrones extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1345, Short.MAX_VALUE)
+            .addGap(0, 1346, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,16 +242,55 @@ public class JDrones extends javax.swing.JFrame {
            mutecs =true;  
            sin =false;
            semaf=false;
+           vcf=false;
+           monif=false;
+           barf=false;
+           str = "mutex";
         } 
         if(sinal.isSelected()){ 
            sin =true; 
            mutecs =false;
+           semaf=false;
+            vcf=false;
+           monif=false;
+           barf=false;
+           str = "ninguno";
         }
         if(sema.isSelected()){
             semaf=true;
             mutecs =false;
            sin =false;
-            
+            vcf=false;
+           monif=false;
+           barf=false;
+           str = "semaforos";  
+        }
+        if(vc.isSelected()){
+            vcf=true;
+            mutecs =false;
+           sin =false;
+           semaf=false;
+           monif=false;
+           barf=false;
+           str = "variable de confdicion";  
+        }
+        if(moni.isSelected()){
+            monif=true;
+            mutecs =false;
+           sin =false;
+           semaf=false;
+            vcf=false;
+           barf=false;
+           str = "monitores";  
+        }
+        if(bar.isSelected()){
+            barf=true;
+            mutecs =false;
+           sin =false;
+           semaf=false;
+            vcf=false;
+           monif=false;
+           str = "barreras";  
         }
         if(contador<7&&nu<11){ 
            reincarneito();
@@ -208,11 +331,34 @@ public class JDrones extends javax.swing.JFrame {
            System.out.println("n"+nu);
       
         }System.out.println("conta"+contador);
+        Dron.iter=0;
+                for(int i=0;i<JDrones.datosX1.length;i++){
+                    JDrones.datosX1[i]=0;
+                    JDrones.datosY1[i]=0;
+                    JDrones.datosX2[i]=0;
+                    JDrones.datosY2[i]=0;
+                    JDrones.datosX3[i]=0;
+                    JDrones.datosY3[i]=0;
+                    JDrones.datosX4[i]=0;
+                    JDrones.datosY4[i]=0;
+                    JDrones.datosX5[i]=0;
+                    JDrones.datosY5[i]=0;
+                    JDrones.datosX6[i]=0;
+                    JDrones.datosY6[i]=0;
+                    JDrones.datosX7[i]=0;
+                    JDrones.datosY7[i]=0;
+                    JDrones.datosX8[i]=0;
+                    JDrones.datosY8[i]=0;
+                    JDrones.datosX9[i]=0;
+                    JDrones.datosY9[i]=0;
+                    JDrones.datosX10[i]=0;
+                    JDrones.datosY10[i]=0;
+                    }
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         int HiloRand=(int)(Math.random()*4);
-        System.out.println("se va a morir el perrito "+ (HiloRand+1));
+        System.out.println("se va a morir bolita "+ (HiloRand+1));
         switch(HiloRand){
             case 0:
                 try{
@@ -251,6 +397,45 @@ public class JDrones extends javax.swing.JFrame {
     private void semaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_semaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_semaActionPerformed
+
+    private void graficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graficarActionPerformed
+        vgraf ventana = new vgraf();
+        ventana.setVisible(true);
+        
+       // panelG.actualizar(datosX,datosY);
+        
+    }//GEN-LAST:event_graficarActionPerformed
+
+    private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
+       // panelG.limpiar();
+       Dron.iter=0;
+       for(int i=0;i<JDrones.datosX1.length;i++){
+              JDrones.datosX1[i]=0;
+              JDrones.datosY1[i]=0;
+              JDrones.datosX2[i]=0;
+              JDrones.datosY2[i]=0;
+              JDrones.datosX3[i]=0;
+              JDrones.datosY3[i]=0;
+              JDrones.datosX4[i]=0;
+              JDrones.datosY4[i]=0;
+              JDrones.datosX5[i]=0;
+              JDrones.datosY5[i]=0;
+              JDrones.datosX6[i]=0;
+              JDrones.datosY6[i]=0;
+              JDrones.datosX7[i]=0;
+              JDrones.datosY7[i]=0;
+              JDrones.datosX8[i]=0;
+              JDrones.datosY8[i]=0;
+              JDrones.datosX9[i]=0;
+              JDrones.datosY9[i]=0;
+              JDrones.datosX10[i]=0;
+              JDrones.datosY10[i]=0;
+       }
+    }//GEN-LAST:event_borrarActionPerformed
+
+    private void barActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_barActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -260,13 +445,16 @@ public class JDrones extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup algor;
-    private javax.swing.JRadioButtonMenuItem cond;
+    private javax.swing.JRadioButtonMenuItem bar;
+    private javax.swing.JMenuItem borrar;
     private javax.swing.JMenuItem eliminar;
+    private javax.swing.JMenuItem graficar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JRadioButtonMenuItem moni;
@@ -274,6 +462,7 @@ public class JDrones extends javax.swing.JFrame {
     private javax.swing.JMenuItem nuevo;
     private javax.swing.JRadioButtonMenuItem sema;
     private javax.swing.JRadioButtonMenuItem sinal;
+    private javax.swing.JRadioButtonMenuItem vc;
     // End of variables declaration//GEN-END:variables
 public void reincarneito(){
     //para bola 1 
@@ -285,7 +474,7 @@ public void reincarneito(){
      Dron.b1=1;
     }if(nu>0){
      //para bola 2
-     coord.x2=672;
+     coord.x2=673;
      coord.y2=0;
      Dron.a2=1;
      Dron.b2=1;
@@ -304,7 +493,7 @@ public void reincarneito(){
      Dron.a3=1;
      Dron.b3=1;
      //para bola 4
-     coord.x4=672;
+     coord.x4=673;
      coord.y4=300;
      Dron.a4=1;
      Dron.b4=1;
@@ -317,13 +506,13 @@ public void reincarneito(){
      Dron.a3=1;
      Dron.b3=1;
      //para bola 4
-     coord.x4=672;
+     coord.x4=673;
      coord.y4=200;
      Dron.a4=1;
      Dron.b4=1;
      //para bola 5
      coord.x5=0;
-     coord.y5=399;
+     coord.y5=400;
      Dron.a5=1;
      Dron.b5=1;
      //-------------------
@@ -335,18 +524,18 @@ public void reincarneito(){
      Dron.a3=1;
      Dron.b3=1;
      //para bola 4
-     coord.x4=672;
+     coord.x4=673;
      coord.y4=200;
      Dron.a4=1;
      Dron.b4=1;
      //para bola 5
      coord.x5=0;
-     coord.y5=399;
+     coord.y5=400;
      Dron.a5=1;
      Dron.b5=1;
       //para bola 6
-     coord.x6=672;
-     coord.y6=399;
+     coord.x6=673;
+     coord.y6=400;
      Dron.a6=1;
      Dron.b6=1;
     }
@@ -354,27 +543,27 @@ public void reincarneito(){
       if(nu==6){
         //para bola 3
      coord.x3=0;
-     coord.y3=200;
+     coord.y3=150;
      Dron.a3=1;
      Dron.b3=1;
      //para bola 4
-     coord.x4=672;
-     coord.y4=200;
+     coord.x4=673;
+     coord.y4=150;
      Dron.a4=1;
      Dron.b4=1;
      //para bola 5
      coord.x5=0;
-     coord.y5=399;
+     coord.y5=300;
      Dron.a5=1;
      Dron.b5=1;
       //para bola 6
-     coord.x6=672;
-     coord.y6=399;
+     coord.x6=673;
+     coord.y6=300;
      Dron.a6=1;
      Dron.b6=1;
       //para bola 7
      coord.x7=0;
-     coord.y7=448;
+     coord.y7=450;
      Dron.a7=1;
      Dron.b7=1;
     }
@@ -386,29 +575,29 @@ public void reincarneito(){
      Dron.a3=1;
      Dron.b3=1;
      //para bola 4
-     coord.x4=672;
+     coord.x4=673;
      coord.y4=150;
      Dron.a4=1;
      Dron.b4=1;
      
      //para bola 5
      coord.x5=0;
-     coord.y5=299;
+     coord.y5=300;
      Dron.a5=1;
      Dron.b5=1;
       //para bola 6
-     coord.x6=672;
-     coord.y6=299;
+     coord.x6=673;
+     coord.y6=300;
      Dron.a6=1;
      Dron.b6=1;
       //para bola 7
      coord.x7=0;
-     coord.y7=448;
+     coord.y7=450;
      Dron.a7=1;
      Dron.b7=1;
      //para bola 8
-     coord.x8=672;
-     coord.y8=448;
+     coord.x8=673;
+     coord.y8=450;
      Dron.a8=1;
      Dron.b8=1;
   
@@ -417,38 +606,38 @@ public void reincarneito(){
      if(nu==8){
            //para bola 3
      coord.x3=0;
-     coord.y3=150;
+     coord.y3=120;
      Dron.a3=1;
      Dron.b3=1;
      //para bola 4
-     coord.x4=672;
-     coord.y4=150;
+     coord.x4=673;
+     coord.y4=120;
      Dron.a4=1;
      Dron.b4=1;
      
      //para bola 5
      coord.x5=0;
-     coord.y5=299;
+     coord.y5=240;
      Dron.a5=1;
      Dron.b5=1;
       //para bola 6
-     coord.x6=672;
-     coord.y6=299;
+     coord.x6=673;
+     coord.y6=240;
      Dron.a6=1;
      Dron.b6=1;
       //para bola 7
      coord.x7=0;
-     coord.y7=448;
+     coord.y7=360;
      Dron.a7=1;
      Dron.b7=1;
      //para bola 8
-     coord.x8=672;
-     coord.y8=448;
+     coord.x8=673;
+     coord.y8=360;
      Dron.a8=1;
      Dron.b8=1;
      //para bola 9
      coord.x9=0;
-     coord.y9=478;
+     coord.y9=480;
      Dron.a9=1;
      Dron.b9=1;
     }
@@ -460,38 +649,38 @@ public void reincarneito(){
      Dron.a3=1;
      Dron.b3=1;
      //para bola 4
-     coord.x4=672;
+     coord.x4=673;
      coord.y4=120;
      Dron.a4=1;
      Dron.b4=1;
      //para bola 5
      coord.x5=0;
-     coord.y5=239;
+     coord.y5=240;
      Dron.a5=1;
      Dron.b5=1;
       //para bola 6
-     coord.x6=672;
-     coord.y6=239;
+     coord.x6=673;
+     coord.y6=240;
      Dron.a6=1;
      Dron.b6=1;
       //para bola 7
      coord.x7=0;
-     coord.y7=358;
+     coord.y7=360;
      Dron.a7=1;
      Dron.b7=1;
      //para bola 8
-     coord.x8=672;
-     coord.y8=448;
+     coord.x8=673;
+     coord.y8=360;
      Dron.a8=1;
      Dron.b8=1;
       //para bola 9
      coord.x9=0;
-     coord.y9=490;
+     coord.y9=480;
      Dron.a9=1;
      Dron.b9=1;
       //para bola 10
-     coord.x10=672;
-     coord.y10=490;
+     coord.x10=673;
+     coord.y10=480;
      Dron.a10=1;
      Dron.b10=1;
     }
@@ -504,38 +693,38 @@ public void reincarneito(){
      Dron.a3=1;
      Dron.b3=1;
      //para bola 4
-     coord.x4=672;
+     coord.x4=673;
      coord.y4=120;
      Dron.a4=1;
      Dron.b4=1;
      //para bola 5
      coord.x5=0;
-     coord.y5=239;
+     coord.y5=240;
      Dron.a5=1;
      Dron.b5=1;
       //para bola 6
-     coord.x6=672;
-     coord.y6=239;
+     coord.x6=673;
+     coord.y6=240;
      Dron.a6=1;
      Dron.b6=1;
       //para bola 7
      coord.x7=0;
-     coord.y7=358;
+     coord.y7=360;
      Dron.a7=1;
      Dron.b7=1;
      //para bola 8
-     coord.x8=672;
-     coord.y8=448;
+     coord.x8=673;
+     coord.y8=360;
      Dron.a8=1;
      Dron.b8=1;
       //para bola 9
      coord.x9=0;
-     coord.y9=490;
+     coord.y9=480;
      Dron.a9=1;
      Dron.b9=1;
       //para bola 10
-     coord.x10=672;
-     coord.y10=477;
+     coord.x10=673;
+     coord.y10=480;
      Dron.a10=1;
      Dron.b10=1;
     }
