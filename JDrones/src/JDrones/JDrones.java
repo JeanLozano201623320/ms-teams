@@ -1,5 +1,4 @@
 package JDrones;
-
 import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.image.*;
@@ -49,10 +48,8 @@ public class JDrones extends javax.swing.JFrame {
     
     
     public JDrones() {
-        //iniciar con pantalla completa
-       // this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        try{                                        // PASARLO a MENU
+        try{                                        
             ima = ImageIO.read(new File("mapaCU.png"));
         }catch(IOException e){e.printStackTrace();}
         datosX1 = new double[100000];
@@ -97,7 +94,6 @@ public class JDrones extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         nuevo = new javax.swing.JMenuItem();
-        eliminar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         sinal = new javax.swing.JRadioButtonMenuItem();
         mute = new javax.swing.JRadioButtonMenuItem();
@@ -137,14 +133,6 @@ public class JDrones extends javax.swing.JFrame {
             }
         });
         jMenu2.add(nuevo);
-
-        eliminar.setText("Eliminar");
-        eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarActionPerformed(evt);
-            }
-        });
-        jMenu2.add(eliminar);
 
         jMenuBar1.add(jMenu2);
 
@@ -237,155 +225,6 @@ public class JDrones extends javax.swing.JFrame {
         System.exit(0);       
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-        if(mute.isSelected()){ 
-           mutecs =true;  
-           sin =false;
-           semaf=false;
-           vcf=false;
-           monif=false;
-           barf=false;
-           str = "mutex";
-        } 
-        if(sinal.isSelected()){ 
-           sin =true; 
-           mutecs =false;
-           semaf=false;
-            vcf=false;
-           monif=false;
-           barf=false;
-           str = "ninguno";
-        }
-        if(sema.isSelected()){
-            semaf=true;
-            mutecs =false;
-           sin =false;
-            vcf=false;
-           monif=false;
-           barf=false;
-           str = "semaforos";  
-        }
-        if(vc.isSelected()){
-            vcf=true;
-            mutecs =false;
-           sin =false;
-           semaf=false;
-           monif=false;
-           barf=false;
-           str = "variable de confdicion";  
-        }
-        if(moni.isSelected()){
-            monif=true;
-            mutecs =false;
-           sin =false;
-           semaf=false;
-            vcf=false;
-           barf=false;
-           str = "monitores";  
-        }
-        if(bar.isSelected()){
-            barf=true;
-            mutecs =false;
-           sin =false;
-           semaf=false;
-            vcf=false;
-           monif=false;
-           str = "barreras";  
-        }
-        if(contador<7&&nu<11){ 
-           reincarneito();
-            
-
-            drones.add(new Dron(x,y,panel));
-            panel.CreaCirculo();
-            for(Dron d: drones){
-                if(!d.isAlive())
-                try{
-                    if(nu==0){
-                        d.setName("1");  contador++;}
-                    if(nu==1){
-                        d.setName("2");  contador++;}
-                    if(nu==2){
-                        d.setName("3");  contador++;}
-                     if(nu==4){
-                        d.setName("5");  contador++;}
-                   if(nu==6){
-                        d.setName("7");  contador++;}
-                    if(nu==8){
-                        d.setName("9");;contador++;}  
-                    if(nu==3)
-                        d.setName("4");
-                    if(nu==5)
-                        d.setName("6");
-                     if(nu==7)
-                        d.setName("8");
-                   if(nu==9){
-                        d.setName("10"); contador++;
-                   }
-                    
-                        d.start();
-                }catch(IllegalThreadStateException ex){ex.printStackTrace();}
-            }
-            nu++;
-            
-           System.out.println("n"+nu);
-      
-        }System.out.println("conta"+contador);
-        Dron.iter=0;
-                for(int i=0;i<JDrones.datosX1.length;i++){
-                    JDrones.datosX1[i]=0;
-                    JDrones.datosY1[i]=0;
-                    JDrones.datosX2[i]=0;
-                    JDrones.datosY2[i]=0;
-                    JDrones.datosX3[i]=0;
-                    JDrones.datosY3[i]=0;
-                    JDrones.datosX4[i]=0;
-                    JDrones.datosY4[i]=0;
-                    JDrones.datosX5[i]=0;
-                    JDrones.datosY5[i]=0;
-                    JDrones.datosX6[i]=0;
-                    JDrones.datosY6[i]=0;
-                    JDrones.datosX7[i]=0;
-                    JDrones.datosY7[i]=0;
-                    JDrones.datosX8[i]=0;
-                    JDrones.datosY8[i]=0;
-                    JDrones.datosX9[i]=0;
-                    JDrones.datosY9[i]=0;
-                    JDrones.datosX10[i]=0;
-                    JDrones.datosY10[i]=0;
-                    }
-    }//GEN-LAST:event_nuevoActionPerformed
-
-    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        int HiloRand=(int)(Math.random()*4);
-        System.out.println("se va a morir bolita "+ (HiloRand+1));
-        switch(HiloRand){
-            case 0:
-                try{
-                   
-                   
-                }catch(Exception e){e.printStackTrace();}
-                break;
-            case 1:
-                 try{
-                    
-                }catch(Exception e){e.printStackTrace();}
-                 break;
-            case 2:
-                 try{
-                    
-                }catch(Exception e){e.printStackTrace();}
-                 break;
-            case 3:
-                 try{
-                    
-                }catch(Exception e){e.printStackTrace();}
-                 break;
-            default:break;
-        }
-            
-    }//GEN-LAST:event_eliminarActionPerformed
-
     private void muteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_muteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_muteActionPerformed
@@ -436,6 +275,124 @@ public class JDrones extends javax.swing.JFrame {
     private void barActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_barActionPerformed
+
+    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
+        if(mute.isSelected()){
+            mutecs =true;
+            sin =false;
+            semaf=false;
+            vcf=false;
+            monif=false;
+            barf=false;
+            str = "mutex";
+        }
+        if(sinal.isSelected()){
+            sin =true;
+            mutecs =false;
+            semaf=false;
+            vcf=false;
+            monif=false;
+            barf=false;
+            str = "ninguno";
+        }
+        if(sema.isSelected()){
+            semaf=true;
+            mutecs =false;
+            sin =false;
+            vcf=false;
+            monif=false;
+            barf=false;
+            str = "semaforos";
+        }
+        if(vc.isSelected()){
+            vcf=true;
+            mutecs =false;
+            sin =false;
+            semaf=false;
+            monif=false;
+            barf=false;
+            str = "variable de confdicion";
+        }
+        if(moni.isSelected()){
+            monif=true;
+            mutecs =false;
+            sin =false;
+            semaf=false;
+            vcf=false;
+            barf=false;
+            str = "monitores";
+        }
+        if(bar.isSelected()){
+            barf=true;
+            mutecs =false;
+            sin =false;
+            semaf=false;
+            vcf=false;
+            monif=false;
+            str = "barreras";
+        }
+        if(contador<7&&nu<11){
+            reincarneito();
+
+            drones.add(new Dron(x,y,panel));
+            panel.CreaCirculo();
+            for(Dron d: drones){
+                if(!d.isAlive())
+                try{
+                    if(nu==0){
+                        d.setName("1");  contador++;}
+                    if(nu==1){
+                        d.setName("2");  contador++;}
+                    if(nu==2){
+                        d.setName("3");  contador++;}
+                    if(nu==4){
+                        d.setName("5");  contador++;}
+                    if(nu==6){
+                        d.setName("7");  contador++;}
+                    if(nu==8){
+                        d.setName("9");;contador++;}
+                    if(nu==3)
+                    d.setName("4");
+                    if(nu==5)
+                    d.setName("6");
+                    if(nu==7)
+                    d.setName("8");
+                    if(nu==9){
+                        d.setName("10"); contador++;
+                    }
+                    d.start();
+                }catch(IllegalThreadStateException ex){ex.printStackTrace();}
+            }
+            //Barrier.maxNumThreads=nu;
+            nu++;
+
+            System.out.println("n"+nu);
+
+        }System.out.println("conta"+contador);
+        Dron.iter=0;
+        for(int i=0;i<JDrones.datosX1.length;i++){
+            JDrones.datosX1[i]=0;
+            JDrones.datosY1[i]=0;
+            JDrones.datosX2[i]=0;
+            JDrones.datosY2[i]=0;
+            JDrones.datosX3[i]=0;
+            JDrones.datosY3[i]=0;
+            JDrones.datosX4[i]=0;
+            JDrones.datosY4[i]=0;
+            JDrones.datosX5[i]=0;
+            JDrones.datosY5[i]=0;
+            JDrones.datosX6[i]=0;
+            JDrones.datosY6[i]=0;
+            JDrones.datosX7[i]=0;
+            JDrones.datosY7[i]=0;
+            JDrones.datosX8[i]=0;
+            JDrones.datosY8[i]=0;
+            JDrones.datosX9[i]=0;
+            JDrones.datosY9[i]=0;
+            JDrones.datosX10[i]=0;
+            JDrones.datosY10[i]=0;
+        }
+    }//GEN-LAST:event_nuevoActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -447,7 +404,6 @@ public class JDrones extends javax.swing.JFrame {
     private javax.swing.ButtonGroup algor;
     private javax.swing.JRadioButtonMenuItem bar;
     private javax.swing.JMenuItem borrar;
-    private javax.swing.JMenuItem eliminar;
     private javax.swing.JMenuItem graficar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
