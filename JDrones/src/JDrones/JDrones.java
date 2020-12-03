@@ -331,6 +331,7 @@ public class JDrones extends javax.swing.JFrame {
             monif=false;
             str = "barreras";
         }
+        Dron.numCalls=0;
         if(contador<7&&nu<11){
             reincarneito();
 

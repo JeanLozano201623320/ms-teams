@@ -42,7 +42,7 @@ public class Dron extends Thread{
     //-----------------semafo
     private Semaphore semaf;
     //----------------barreras-----
-     private int numCalls = 0;
+     public static int numCalls = 0;
     private CyclicBarrier barrera;
     private CyclicBarrier barrera2;
     //-------------------------
@@ -51,9 +51,10 @@ public class Dron extends Thread{
         this.panel=panel;
         mutex = new ReentrantLock();
         mutexvc = new ReentrantLock();
+        vcondition=new ReentrantLock();
+        condition= vcondition.newCondition();
         semaf= new Semaphore(1);
         barrera = new CyclicBarrier(1);
-       //https://www.geeksforgeeks.org/java-util-concurrent-cyclicbarrier-java/
     }
     public   void run(){
         iter=0;
@@ -404,7 +405,9 @@ public class Dron extends Thread{
                            coord.x10+=a10;//;=x+a;
                            check();
                         }
-                  
+                 berrier();
+                 barrera.await();
+                
 
              }
             /*aqui iba antes check a funcion
@@ -439,6 +442,20 @@ public class Dron extends Thread{
             }
             iter++;
         }
+    }
+    public void berrier(){
+           numCalls++;
+            try{
+           if (numCalls == JDrones.nu) {
+                
+                this.notifyAll();
+                
+                  numCalls = 0;
+            } else {
+               
+             this.wait();}
+                }catch(Exception e){}
+            
     }
     public  void signal(){
         mutexvc.lock();
